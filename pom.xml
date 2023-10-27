@@ -69,7 +69,30 @@
 						<file>src/main/resources/version.properties</file>
 					</files>
 				</configuration>
+
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.11.1</version> <!-- Use the latest version -->
+				<executions>
+					<execution>
+						<goals>
+							<goal>tag</goal>
+						</goals>
+						<phase>deploy</phase> <!-- Or choose an appropriate phase -->
+					</execution>
+				</executions>
+				<configuration>
+					<providerImplementations>
+						<git>native</git>
+					</providerImplementations>
+					<tag>HEAD</tag> <!-- Create a tag for the latest commit -->
+					<message>New release: ${project.version}</message>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 	<repositories>
